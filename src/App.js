@@ -9,6 +9,7 @@ import LocaleContext from "./LocaleContext";
 
 const postData = [
   {
+    postId: 1,
     title: "O Ricardo é mal educado",
     description: "O porquê da má educação",
     postImg:
@@ -18,6 +19,7 @@ const postData = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   },
   {
+    postId: 2,
     title: "O Ricardo é malcriado, sim",
     description: "Metin 2",
     postImg:
@@ -26,6 +28,7 @@ const postData = [
     content: "oqwneqjndoqinweqwpindq nidnqiwndiqwn eindqip.",
   },
   {
+    postId: 3,
     title: "Quem é o maior?",
     description: "Sou eu, o Ricardo",
     postImg:
@@ -51,8 +54,8 @@ const App = () => {
         </nav>
         <Switch>
           <Route path="/" exact component={Home}></Route>
-          <Route path="/Post" exact component={Post} />
-          <Route path="/Post/:postId" component={Post} />
+          <Route path="/Post" component={Post} />
+          <Route exact path="/posts/:postId" component={Post} />
         </Switch>
       </Router>
     </LocaleContext.Provider>

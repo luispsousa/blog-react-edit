@@ -36,4 +36,4 @@ class AddComment extends Component {
   }
 }
 
-export default AddComment
+export default AddComment;
