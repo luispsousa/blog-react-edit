@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Post = ({title, description, postImg, author, date, content}) => {
+const PostBody = ({title, description, postImg, author, content}) => {
   return (
     <div className="post__container">
       <h1>{title}</h1>
@@ -14,4 +14,4 @@ const Post = ({title, description, postImg, author, date, content}) => {
   );
 }
 
-export default Post;
+export default PostBody;

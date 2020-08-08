@@ -21,7 +21,7 @@ class AddComment extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form className="form" onSubmit={this.handleSubmit}>
         <textarea
           rows="4"
           cols="50"
