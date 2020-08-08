@@ -17,8 +17,10 @@ class Comments extends React.Component {
     this.setState({ comments: newComments });
   }
 
-  handleRemoveComment() {
-    console.log(this);
+  handleRemoveComment(index) {
+    const removedList = [...this.state.comments]; 
+    removedList.splice(index, 1);
+    this.setState({ comments: removedList });
   }
 
   render() {

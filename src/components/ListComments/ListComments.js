@@ -9,7 +9,7 @@ const ListComments = ({list, handleRemoveComment}) => {
             <li 
               key={i}>
               {comment}
-              <button onClick={handleRemoveComment(i)}>X</button>
+              <button onClick={() => handleRemoveComment(i)}>X</button>
             </li>
           ); 
             
