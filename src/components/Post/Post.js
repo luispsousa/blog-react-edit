@@ -8,7 +8,6 @@ const Post = ({title, description, postImg, author, date, content}) => {
       <img style={{maxWidth: '500px'}} src={postImg} alt="" />
       <div>
         <p>{author}</p>
-        <p>{date}</p>
       </div>
       <p>{content}</p>
     </div>
