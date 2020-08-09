@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from './Pages/Home';
-import Blog from './Pages/Blog';
 import Post from './Pages/Post';
 
 import LocaleContext from "./LocaleContext";
@@ -17,6 +16,11 @@ const postData = [
     author: "Luis Sousa",
     content:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    comments: [
+      "Já estive com o Ricardo e ele é de facto malcriado.",
+      "O rapaz é um morcão",
+      "Post 1",
+    ],
   },
   {
     postId: 2,
@@ -26,6 +30,11 @@ const postData = [
       "https://images.unsplash.com/photo-1596356811627-71c44557cabc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
     author: "Paulo Xpto",
     content: "oqwneqjndoqinweqwpindq nidnqiwndiqwn eindqip.",
+    comments: [
+      "Já estive com o Ricardo e ele é de facto malcriado.",
+      "O rapaz é um morcão",
+      "Post 2",
+    ],
   },
   {
     postId: 3,
@@ -35,31 +44,73 @@ const postData = [
       "https://images.unsplash.com/photo-1596161542619-417102cd517c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60",
     author: "Nvignqe Sousa",
     content: "CONTENT DO POST 3 ODKQPOWMEPQOWMD.",
+    comments: [
+      "Já estive com o Ricardo e ele é de facto malcriado.",
+      "O rapaz é um morcão",
+      "Post 3",
+    ],
   },
 ];
 
-const App = () => {
-  return (
-    <LocaleContext.Provider value={postData}>
-      <Router>
-        <nav>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/Post">Post</Link>
-            </li>
-          </ul>
-        </nav>
-        <Switch>
-          <Route path="/" exact component={Home}></Route>
-          <Route path="/Post" component={Post} />
-          <Route exact path="/posts/:postId" component={Post} />
-        </Switch>
-      </Router>
-    </LocaleContext.Provider>
-  );
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    
+    /* setComment = comment => {
+      this.setState({ posts })
+    } */
+
+
+
+    this.state = { 
+      posts: [...postData], 
+      /* handleAddPost: (newPost, postId) => {  
+        console.log(posts)
+        this.setState(({posts}) => ({
+          posts: [...posts, newPost]
+        }));
+      }, 
+      handleRemoveComment : (index) => {
+        const removeFromList = [...posts];
+        removedList.splice(index, 1);
+        this.setState({posts: removeFromList});
+      } */
+    };
+    /* this.handleAddPost = this.handleAddPost.bind(this);
+    this.handleRemoveComment = this.handleRemoveComment.bind(this); */
+  }
+
+  /* handleAddPost(post) {
+    const newComments = [...this.state.comments, post];
+    this.setState({ comments: newComments });
+  }
+
+  handleRemoveComment(index) {
+    const removedList = [...this.state.comments];
+    removedList.splice(index, 1);
+    this.setState({ comments: removedList });
+  } */
+
+  render() {
+    return (
+      <LocaleContext.Provider value={this.state}>
+        <Router>
+          <nav>
+            <ul>
+              <li>
+                <Link to="/">Home</Link>
+              </li>
+            </ul>
+          </nav>
+          <Switch>
+            <Route path="/" exact component={Home}></Route>
+            <Route path="/Post" component={Post} />
+            <Route exact path="/posts/:postId" component={Post} />
+          </Switch>
+        </Router>
+      </LocaleContext.Provider>
+    );
+  }
 }
 
 export default App;

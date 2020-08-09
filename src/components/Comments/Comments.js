@@ -3,34 +3,33 @@ import React from 'react';
 import AddComment from '../AddComment/AddComment';
 import ListComments from '../ListComments/ListComments';
 
+import LocaleContext from '../../LocaleContext';
+
 class Comments extends React.Component {
   constructor(props) {
     super(props);
     
-    this.handleAddPost = this.handleAddPost.bind(this);
-    this.handleRemoveComment = this.handleRemoveComment.bind(this);
-
-    this.state = { comments: ['Comment1', 'COmement22e21i3n12'] };
   }
   
-  handleAddPost (post) {
-    const newComments = [...this.state.comments, post];
-    this.setState({ comments: newComments });
-  }
-
-  handleRemoveComment(index) {
-    const removedList = [...this.state.comments]; 
-    removedList.splice(index, 1);
-    this.setState({ comments: removedList });
-  }
-
   render() {
     return (
-      <>
+      <div>
         <h2>Comments</h2>
-        <ListComments list={this.state.comments} handleRemoveComment={this.handleRemoveComment} />
-        <AddComment handleAddPost={this.handleAddPost} />
-      </>
+        <LocaleContext.Consumer>
+          {(data) => {
+            return data.posts.map(({postId, comments}, i) => {
+              if(this.props.id == postId) {
+                return (
+                  <div key={i}>
+                    <ListComments list={comments} handleRemoveComment={data.handleRemoveComment} />
+                    <AddComment handleAddPost={data.handleAddPost} />
+                  </div>
+                );
+              }
+            })
+          }}
+        </LocaleContext.Consumer>
+      </div>
     );
   }
 }

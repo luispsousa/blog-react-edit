@@ -20,7 +20,7 @@ class Home extends Component {
         <div style={postContainer}>
           <LocaleContext.Consumer>
               {(data) => {
-                return data.map((post, i) =>{
+                return data.posts.map((post, i) =>{
                   return <PostCard key={i} post={post} />;
                 })
               }}
