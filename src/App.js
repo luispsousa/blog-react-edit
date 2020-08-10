@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Home from './Pages/Home';
 import Post from './Pages/Post';
+import Page404 from './Pages/Page404';
 
 import LocaleContext from "./LocaleContext";
 
@@ -94,8 +95,8 @@ class App extends React.Component {
           </nav>
           <Switch>
             <Route path="/" exact component={Home}></Route>
-            <Route path="/Post" component={Post} />
-            <Route exact path="/posts/:postId" component={Post} />
+            <Route path="/posts/:postId" component={Post} />
+            <Route component={Page404} />
           </Switch>
         </Router>
       </LocaleContext.Provider>
