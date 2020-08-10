@@ -21,8 +21,8 @@ class Comments extends React.Component {
               if(this.props.id == postId) {
                 return (
                   <div key={i}>
-                    <ListComments list={comments} handleRemoveComment={data.handleRemoveComment} />
-                    <AddComment handleAddPost={data.handleAddPost} />
+                    <ListComments list={comments}/>
+                    <AddComment />
                   </div>
                 );
               }

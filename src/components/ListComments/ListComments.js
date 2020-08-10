@@ -1,15 +1,20 @@
 import React from 'react';
 
-const ListComments = ({list, handleRemoveComment}) => {
+const ListComments = ({list}) => {
   return (
     <div>
       <ul>
         {list.map((comment, i) => {
-          return(
-            <li 
-              key={i}>
+          return (
+            <li key={i}>
               {comment}
-              <button onClick={() => handleRemoveComment(i)}>X</button>
+              <button
+                onClick={() =>
+                  removeComment(i, window.location.pathname.match(/\d+/)[0])
+                }
+              >
+                x
+              </button>
             </li>
           ); 
             
