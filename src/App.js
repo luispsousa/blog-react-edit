@@ -22,11 +22,10 @@ class App extends React.Component {
 
     this.removeComment = (index, postId) => {
       this.state.posts.map(post =>{
-        console.log(typeof post.postId);
-        console.log(typeof postId);
         if(post.postId == postId) {
           const newComments = {...this.state.posts};
-          /* newComments[postId-1].comments.splice() */
+          newComments[postId-1].comments.splice(index,1);
+          this.setState({newComments});
         }
       })
     }
@@ -78,6 +77,7 @@ class App extends React.Component {
         },
       ],
       addComment: this.addComment,
+      removeComment: this.removeComment,
     };
   }
 

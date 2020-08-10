@@ -26,6 +26,7 @@ class AddComment extends Component {
                 this.state.value,
                 window.location.pathname.match(/\d+/)[0]
               );
+              this.setState({value: ''});
             }}
           >
             <textarea
