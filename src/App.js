@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import axios from 'axios';
 
 import Home from './Pages/Home';
 import Post from './Pages/Post';
@@ -11,26 +12,32 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      error: null,
+      isLoaded: false,
+      items: [],
+    };
+
     this.addComment = (comment, postId) => {
-      this.state.posts.map(post => {
-        if(post.postId == postId) {
-          const newComments = {...this.state.posts};
-          newComments[postId-1].comments.push(comment);
-          this.setState({newComments});
+      this.state.posts.map((post) => {
+        if (post.postId == postId) {
+          const newComments = { ...this.state.posts };
+          newComments[postId - 1].comments.push(comment);
+          this.setState({ newComments });
         }
-      })
-    }
+      });
+    };
 
     this.removeComment = (index, postId) => {
-      this.state.posts.map(post =>{
-        if(post.postId == postId) {
-          const newComments = {...this.state.posts};
-          newComments[postId-1].comments.splice(index,1);
-          this.setState({newComments});
+      this.state.posts.map((post) => {
+        if (post.postId == postId) {
+          const newComments = { ...this.state.posts };
+          newComments[postId - 1].comments.splice(index, 1);
+          this.setState({ newComments });
         }
-      })
-    }
-    
+      });
+    };
+
     this.state = {
       posts: [
         {
@@ -82,9 +89,26 @@ class App extends React.Component {
     };
   }
 
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/posts")
+      .then((res) => res.json())
+      .then((result) => {
+        this.setState({
+          isLoaded: true,
+          items: result
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true,
+            error
+          })
+        });
+      });
+  }
+
   render() {
     return (
-      <LocaleContext.Provider value={this.state} >
+      <LocaleContext.Provider value={this.state}>
         <Router>
           <nav>
             <ul>
