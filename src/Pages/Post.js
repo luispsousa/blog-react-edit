@@ -15,7 +15,7 @@ const Post = ({match}) => {
   
   return (
     <>
-      <LocaleContext.Consumer>
+      {/* <LocaleContext.Consumer>
         {(data) => {
           return data.posts.map(({postId, title, description, postImg, author, content}, i) => {
           if(postId == match.params.postId) {
@@ -36,7 +36,7 @@ const Post = ({match}) => {
             );
           }
         })}}
-      </LocaleContext.Consumer>
+      </LocaleContext.Consumer> */}
       
     </>
   );

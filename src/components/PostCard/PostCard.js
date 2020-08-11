@@ -1,15 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PostCard = (post) => {
-  const {post: {postId, title, description, postImg}} = post;
+const PostCard = () => {
+  
   return (
-    <div style={{ maxWidth: "300px" }}>
-      <img style={{ width: "100%" }} src={postImg} alt="" />
-      <h3>{title}</h3>
-      <p>{description}</p>
-      <Link to={`/posts/${postId}`}>Go to Post</Link>
-    </div>
+    <LocaleContext.Consumer>
+      {(data) => {
+        {/* console.log(data); */}
+        if (data.loading) {
+          return <h2>Loading...</h2>;
+        }
+
+        return (
+          <>
+            <ul className="list-group mb-4">
+              {data.currentPosts.map((post) => (
+                <li key={post.id} className="list-group-item">
+                  {post.title}
+                </li>
+              ))}
+            </ul>
+          </>
+        );
+      }}
+    </LocaleContext.Consumer>
   );
 }
 
