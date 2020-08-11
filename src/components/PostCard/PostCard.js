@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import LocaleContext from '../../LocaleContext';
 
 const PostCard = () => {
   
@@ -12,7 +13,6 @@ const PostCard = () => {
         }
 
         return (
-          <>
             <ul className="list-group mb-4">
               {data.currentPosts.map((post) => (
                 <li key={post.id} className="list-group-item">
@@ -20,7 +20,6 @@ const PostCard = () => {
                 </li>
               ))}
             </ul>
-          </>
         );
       }}
     </LocaleContext.Consumer>
