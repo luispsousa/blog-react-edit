@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 
-import LocaleContext from '../../LocaleContext';
-
 class AddComment extends Component {
   constructor(props) {
     super(props);

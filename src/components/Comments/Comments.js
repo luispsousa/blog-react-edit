@@ -3,7 +3,6 @@ import React from 'react';
 import AddComment from '../AddComment/AddComment';
 import ListComments from '../ListComments/ListComments';
 
-import LocaleContext from '../../LocaleContext';
 
 class Comments extends React.Component {
   constructor(props) {

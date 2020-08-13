@@ -1,7 +1,5 @@
 import React from 'react';
 
-import LocaleContext from "../LocaleContext";
-
 /* Components */
 import PostAbout from '../components/PostAbout/PostAbout';
 import Comments from "../components/Comments/Comments";

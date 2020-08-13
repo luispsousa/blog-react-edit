@@ -1,11 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import axios from 'axios';
 
 import Home from './Pages/Home';
 import Post from './Pages/Post';
 import Page404 from './Pages/Page404';
 
-import LocaleContext from "./LocaleContext";
+import Store from './Services/Store';
 
 class App extends React.Component {
   constructor(props) {
@@ -22,31 +23,21 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    fetch("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => res.json())
-      .then((result) => {
-        const indexOfLastPost = this.state.currentPage * this.state.postsPerPage;
-        const indexOfFirstPost = indexOfLastPost - this.state.postsPerPage;
-        const postsPage = result.slice(indexOfFirstPost, indexOfLastPost);
-        this.setState({
-          isLoaded: true,
-          posts: result,
-          currentPosts: postsPage
-        },
-        (error) => {
-          this.setState({
-            isLoaded: true,
-            error
-          })
-        });
-      });
+    const fetchPosts = async () => {
+      this.setState({isLoaded: true});
+      const res = await axios.get("https://jsonplaceholder.typicode.com/posts");
+      this.setState({posts: res.data});
+      this.setState({ isLoaded: false });
+    }
+
+    fetchPosts();
   }
 
   render() {    
     return (
-      <LocaleContext.Provider value={this.state}>
+      <Store>
         <Router>
-          <nav>
+          <nav className="container mt-5">
             <ul>
               <li>
                 <Link to="/">Home</Link>
@@ -59,7 +50,7 @@ class App extends React.Component {
             <Route component={Page404} />
           </Switch>
         </Router>
-      </LocaleContext.Provider>
+      </Store>
     );
   }
 }
